@@ -1,11 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <main>
+      <% messages.forEach(function(message){ %>
+      <% let date = message.added %>
+      <%const monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+      "Aug", "Sep", "Oct", "Nov", "Dec" ]; %>
+      <% const hour = date.getHours() %>
+      <% const minute = date.getMinutes() %>
+      <% const day = date.getDate(); %>
+      <% const month = monthNames[date.getMonth()] %>
+      <% const year = date.getFullYear(); %>
+      <div>
+        <b> <%= message.user %>: </b>
+        <span><%= message.text %> </span>
+        <span>
+          <%=`${hour}:${minute}  ${day}-${month}-${year}`%>
+        </span>
+      </div>
+      <% }) %>
+    </main>
   </body>
 </html>
